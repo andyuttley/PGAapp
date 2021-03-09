@@ -5,7 +5,7 @@ import altair as alt
 #Create header
 st.write(
     """
-    # V1.1 of PGA App
+    # V1.2 of PGA App
     ## Andy Uttley 
     ### The following stats were scraped from the PGA website:
     """
@@ -18,6 +18,10 @@ data
 
 #Create and name sidebar
 st.sidebar.header('Choose your weightings')
+
+thisyear = st.sidebar.slider('2021 weighting', 0.0, 1.0, 1.0, 0.2)
+lastyear = st.sidebar.slider('2020 weighting', 0.0, 1.0, 0.8, 0.2)
+st.sidebar.write("""Now choose your metric weightings:""")
 
 def user_input_features():
     sgott = st.sidebar.slider('SG Off the Tee', 0.0, 2.0, 1.0, 0.5)
@@ -49,7 +53,7 @@ st.write(
 
 
 def results_output():
-    sg_ott = (data['SG_OTT_2020'] + data['SG_OTT_2021']) * df_user['SG OTT'][0]
+    sg_ott = (data['SG_OTT_2020']*lastyear + data['SG_OTT_2021']*thisyear)/2 * df_user['SG OTT'][0]
     sg_t2g = (data['SG_TeeToGreen_2020'] + data['SG_TeeToGreen_2021']) * df_user['SG T2G'][0]
     sg_putt = (data['SG_Putting2020'] + data['SG_Putting2021']) * df_user['SG Putt'][0]
     results = {'Name': data['PLAYER NAME']
