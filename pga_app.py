@@ -5,11 +5,12 @@ import altair as alt
 #Create header
 st.write(
     """
-    # V1.0 of PGA App
+    # V1.1 of PGA App
     ## Andy Uttley 
     ### The following stats were scraped from the PGA website:
     """
 )
+
 
 #Bring in the data
 data = pd.read_excel('/Users/andrewuttley/Desktop/PGAapp/PGA_Database.xlsx')
