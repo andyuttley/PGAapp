@@ -26,9 +26,9 @@ st.sidebar.header('Choose your weightings')
 st.sidebar.write("""#### Choose your SG bias""")
 def user_input_features():
     sgott = st.sidebar.slider('SG Off the Tee', 0, 100, 90, 5)
-    sga2g = st.sidebar.slider('SG Approach to Green', 0, 100, 80, 5)
+    sga2g = st.sidebar.slider('SG Approach to Green', 0, 100, 60, 5)
     sgatg = st.sidebar.slider('SG Around the Green', 0, 100, 50, 5)
-    sgputt = st.sidebar.slider('SG Putting', 0, 100, 70, 5)
+    sgputt = st.sidebar.slider('SG Putting', 0, 100, 80, 5)
 
     user_data = {'SG OTT': sgott,
                  'SG A2G': sga2g,
@@ -42,7 +42,7 @@ df_user = user_input_features()
 if st.sidebar.checkbox("Choose your own recency bias"):
     def user_input_biased():
         thisyear = st.sidebar.slider('2021 weighting', 0, 100, 100, 5)
-        lastyear = st.sidebar.slider('2020 weighting', 0, 100, 100, 5)
+        lastyear = st.sidebar.slider('2020 weighting', 0, 100, 80, 5)
         biased_data = {'this year': thisyear/100,
                        'last year': lastyear/100}
         biased = pd.DataFrame(biased_data, index=[0])
@@ -54,7 +54,7 @@ if st.sidebar.checkbox("Choose your own recency bias"):
 else:
     def user_input_biased():
         thisyear = 100
-        lastyear = 100
+        lastyear = 80
         biased_data = {'this year': thisyear / 100,
                        'last year': lastyear / 100}
         biased = pd.DataFrame(biased_data, index=[0])
