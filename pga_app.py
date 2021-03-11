@@ -25,10 +25,10 @@ st.sidebar.header('Choose your weightings')
 
 st.sidebar.write("""#### Choose your SG bias""")
 def user_input_features():
-    sgott = st.sidebar.slider('SG Off the Tee', 0, 100, 20, 5)
-    sga2g = st.sidebar.slider('SG Approach to Green', 0, 100, 20, 5)
-    sgatg = st.sidebar.slider('SG Around the Green', 0, 100, 20, 5)
-    sgputt = st.sidebar.slider('SG Putting', 0, 100, 20, 5)
+    sgott = st.sidebar.slider('SG Off the Tee', 0, 100, 90, 5)
+    sga2g = st.sidebar.slider('SG Approach to Green', 0, 100, 80, 5)
+    sgatg = st.sidebar.slider('SG Around the Green', 0, 100, 50, 5)
+    sgputt = st.sidebar.slider('SG Putting', 0, 100, 100, 5)
 
     user_data = {'SG OTT': sgott,
                  'SG A2G': sga2g,
@@ -65,7 +65,7 @@ else:
 #Display the user's chosen weightings
 st.write(
     """
-    ## your chosen weighting %:
+    ## your chosen weighting %  :
     """
 )
 df_user
