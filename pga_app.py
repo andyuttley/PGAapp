@@ -17,9 +17,13 @@ st.write(
     give you a ranked 'predicted outcome' based on your selections.
     """)
 
+#image
+image = Image.open('/Users/andrewuttley/Desktop/PGAapp/Tiger.jpg')
+st.image(image)
+
 #Bring in the data
 data = pd.read_excel('/Users/andrewuttley/Desktop/PGAapp/PGA_Database.xlsx')
-
+data
 #Create and name sidebar
 st.sidebar.header('Choose your weightings')
 
@@ -39,7 +43,7 @@ def user_input_features():
 
 df_user = user_input_features()
 
-if st.sidebar.checkbox("Choose your own recency bias"):
+if st.sidebar.checkbox("Choose a recency bias"):
     def user_input_biased():
         thisyear = st.sidebar.slider('2021 weighting', 0, 100, 100, 5)
         lastyear = st.sidebar.slider('2020 weighting', 0, 100, 80, 5)
@@ -76,11 +80,6 @@ st.write(
     ## YOUR PREDICTION
     """
 )
-
-#image
-image = Image.open('/Users/andrewuttley/Desktop/PGAapp/Tiger.jpg')
-st.image(image)
-
 
 def results_output():
     sg_ott = (data['SG_OTT_2020']*df_user_biased['last year'][0] + data['SG_OTT_2021']*df_user_biased['this year'][0]) * df_user['SG OTT'][0]/100
