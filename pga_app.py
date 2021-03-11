@@ -22,17 +22,6 @@ data = pd.read_excel('/Users/andrewuttley/Desktop/PGAapp/PGA_Database.xlsx')
 
 #Create and name sidebar
 st.sidebar.header('Choose your weightings')
-st.sidebar.write("""#### Choose your recency bias""")
-def user_input_biased():
-    thisyear = st.sidebar.slider('2021 weighting', 0, 100, 100, 5)
-    lastyear = st.sidebar.slider('2020 weighting', 0, 100, 100, 5)
-    biased_data = {'this year': thisyear,
-                 'last year': lastyear}
-    biased = pd.DataFrame(biased_data, index=[0])
-    return biased
-
-
-df_user_biased = user_input_biased()
 
 st.sidebar.write("""#### Choose your SG bias""")
 def user_input_features():
@@ -50,10 +39,33 @@ def user_input_features():
 
 df_user = user_input_features()
 
+if st.sidebar.checkbox("Choose your own recency bias"):
+    def user_input_biased():
+        thisyear = st.sidebar.slider('2021 weighting', 0, 100, 100, 5)
+        lastyear = st.sidebar.slider('2020 weighting', 0, 100, 100, 5)
+        biased_data = {'this year': thisyear/100,
+                       'last year': lastyear/100}
+        biased = pd.DataFrame(biased_data, index=[0])
+        return biased
+
+
+    df_user_biased = user_input_biased()
+
+else:
+    def user_input_biased():
+        thisyear = 100
+        lastyear = 100
+        biased_data = {'this year': thisyear / 100,
+                       'last year': lastyear / 100}
+        biased = pd.DataFrame(biased_data, index=[0])
+        return biased
+    df_user_biased = user_input_biased()
+
+
 #Display the user's chosen weightings
 st.write(
     """
-    ## your chosen weightings:
+    ## your chosen weighting %:
     """
 )
 df_user
@@ -71,10 +83,10 @@ st.image(image)
 
 
 def results_output():
-    sg_ott = (data['SG_OTT_2020'] + data['SG_OTT_2021']) * df_user['SG OTT'][0]/100
-    sg_a2g = (data['SG_A2G_2020'] + data['SG_A2G_2021']) * df_user['SG A2G'][0] / 100
-    sg_atg = (data['SG_ATG_2020'] + data['SG_ATG_2021']) * df_user['SG ATG'][0] / 100
-    sg_putt = (data['SG_Putting2020'] + data['SG_Putting2021']) * df_user['SG Putt'][0]/100
+    sg_ott = (data['SG_OTT_2020']*df_user_biased['last year'][0] + data['SG_OTT_2021']*df_user_biased['this year'][0]) * df_user['SG OTT'][0]/100
+    sg_a2g = (data['SG_A2G_2020']*df_user_biased['last year'][0]  + data['SG_A2G_2021']*df_user_biased['this year'][0]) * df_user['SG A2G'][0] / 100
+    sg_atg = (data['SG_ATG_2020']*df_user_biased['last year'][0]  + data['SG_ATG_2021']*df_user_biased['this year'][0]) * df_user['SG ATG'][0] / 100
+    sg_putt = (data['SG_Putting2020']*df_user_biased['last year'][0]  + data['SG_Putting2021']*df_user_biased['this year'][0]) * df_user['SG Putt'][0]/100
     results = {'Name': data['PLAYER NAME']
                , 'Total SG per round': sg_ott + sg_a2g + sg_atg + sg_putt
                , 'SG OTT Weighted': sg_ott
