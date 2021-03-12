@@ -110,5 +110,4 @@ df_results['Win prediction %'] = softmax(df_results['Total SG per round'])
 df_results2 = df_results[['Name', 'Win prediction %', 'Total SG per round']]
 df_results2
 
-#gitpush
 
