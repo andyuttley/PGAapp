@@ -4,16 +4,24 @@ import altair as alt
 import numpy as np
 from PIL import Image
 
+pgalink = '[PGA](www.pgatour.com)'
+linkedinlink = '[Andy Uttley - LinkedIn](https://www.linkedin.com/in/andrewuttley/)'
+mediumlink = '[Andy Uttley - Medium Blog](https://andy-uttley.medium.com/)'
+
 #Create header
 st.write(
     """
     # PGA Data Modeller     
-    """)
+    ## For more information reach out at:
+    """, mediumlink, """ | """,
+    linkedinlink)
+
+
 
 st.write(
     """
-    Using data scraped from www.pgatour.com 
-    Use the left side of the screen to apply  weightings to the different metrics. This will 
+    Using live data scraped from the """, pgalink, " website,")
+st.write(""" Use the left side of the screen to apply  weightings to the different metrics. This will 
     give you a ranked 'predicted outcome' based on your selections.
     Trying a new header.
     And a second one.
@@ -25,7 +33,7 @@ st.image(image)
 
 #Bring in the data
 data = pd.read_excel('PGA_Database.xlsx')
-data
+
 #Create and name sidebar
 st.sidebar.header('Choose your weightings')
 
@@ -99,6 +107,7 @@ def results_output():
     resultpd.sort_values(by=['Total SG per round'], ascending=False, inplace=True)
     return resultpd
 
+
 df_results  = results_output()
 
 
@@ -109,6 +118,10 @@ def softmax(x):
 
 df_results['Win prediction %'] = softmax(df_results['Total SG per round'])
 df_results2 = df_results[['Name', 'Win prediction %', 'Total SG per round']]
+df_results2.reset_index(inplace=True)
+
+st.write("Your predicted winner is: ", df_results2['Name'][0], "who has a ", "{:.2f}".format(df_results2['Win prediction %'][0]),"% chance of winning")
+
 df_results2
 
 
