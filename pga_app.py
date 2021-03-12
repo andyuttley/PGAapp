@@ -15,15 +15,14 @@ st.write(
     Using data scraped from www.pgatour.com 
     Use the left side of the screen to apply  weightings to the different metrics. This will 
     give you a ranked 'predicted outcome' based on your selections.
-    Testing new text. again. 
     """)
 
 #image
-image = Image.open('Tiger.jpg')
+image = Image.open('/Users/andrewuttley/Desktop/PGAapp/Tiger.jpg')
 st.image(image)
 
 #Bring in the data
-data = pd.read_excel('/PGA_Database.xlsx')
+data = pd.read_excel('/Users/andrewuttley/Desktop/PGAapp/PGA_Database.xlsx')
 data
 #Create and name sidebar
 st.sidebar.header('Choose your weightings')
@@ -111,3 +110,4 @@ df_results2 = df_results[['Name', 'Win prediction %', 'Total SG per round']]
 df_results2
 
 #gitpush
+
