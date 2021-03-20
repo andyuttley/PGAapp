@@ -129,7 +129,7 @@ color=alt.condition(
         alt.value('#f63366'),     #  sets the bar to the streamlit pink.
         alt.value('grey')  ) # else this colour
 ).properties(
-    width=700
+    width=300
 )
 
 
