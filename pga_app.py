@@ -22,11 +22,11 @@ st.write(
 
 
 #image
-image = Image.open('/Users/andrewuttley/Desktop/PGAapp/Tiger.jpg')
+image = Image.open('Tiger.jpg')
 st.image(image)
 
 #Bring in the data
-data = pd.read_excel('/Users/andrewuttley/Desktop/PGAapp/PGA_Database.xlsx')
+data = pd.read_excel('PGA_Database.xlsx')
 
 #Create and name sidebar
 st.sidebar.header('Choose your weightings')
