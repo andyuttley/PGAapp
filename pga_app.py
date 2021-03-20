@@ -128,8 +128,6 @@ color=alt.condition(
     alt.datum.Name == df_results2['Name'][0],  # If it's the top ranked prediction
         alt.value('#f63366'),     #  sets the bar to the streamlit pink.
         alt.value('grey')  ) # else this colour
-).properties(
-    width=300
 )
 
 
