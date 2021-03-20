@@ -12,27 +12,21 @@ mediumlink = '[Andy Uttley - Medium Blog](https://andy-uttley.medium.com/)'
 st.write(
     """
     # PGA Data Modeller     
-    ## For more information reach out at:
+    ## How it works
+    Using live data scraped from the """, pgalink, """ website, model your predicted winner by using the left side of the screen to apply  weightings to the different metrics. This will 
+    give you a ranked 'predicted outcome' based on your selections.
+    
+    ## For more information visit:
     """, mediumlink, """ | """,
     linkedinlink)
 
 
-
-st.write(
-    """
-    Using live data scraped from the """, pgalink, " website,")
-st.write(""" Use the left side of the screen to apply  weightings to the different metrics. This will 
-    give you a ranked 'predicted outcome' based on your selections.
-    Trying a new header.
-    And a second one.
-    """)
-
 #image
-image = Image.open('Tiger.jpg')
+image = Image.open('/Users/andrewuttley/Desktop/PGAapp/Tiger.jpg')
 st.image(image)
 
 #Bring in the data
-data = pd.read_excel('PGA_Database.xlsx')
+data = pd.read_excel('/Users/andrewuttley/Desktop/PGAapp/PGA_Database.xlsx')
 
 #Create and name sidebar
 st.sidebar.header('Choose your weightings')
@@ -79,7 +73,7 @@ else:
 #Display the user's chosen weightings
 st.write(
     """
-    ## your chosen weighting %  :
+    ## Your chosen weighting:
     """
 )
 df_user
@@ -87,7 +81,7 @@ df_user
 #Output rankings based on users selections
 st.write(
     """
-    ## YOUR PREDICTION
+    ## YOUR PREDICTION OUTPUT
     """
 )
 
@@ -116,12 +110,38 @@ def softmax(x):
     e_x = np.exp(x - np.max(x))
     return (e_x / e_x.sum(axis=0))*100
 
-df_results['Win prediction %'] = softmax(df_results['Total SG per round'])
-df_results2 = df_results[['Name', 'Win prediction %', 'Total SG per round']]
+df_results['prediction'] = softmax(df_results['Total SG per round'])
+df_results2 = df_results[['Name', 'prediction', 'Total SG per round']]
 df_results2.reset_index(inplace=True)
 
-st.write("Your predicted winner is: ", df_results2['Name'][0], "who has a ", "{:.2f}".format(df_results2['Win prediction %'][0]),"% chance of winning")
+st.write("Your predicted winner is: ", df_results2['Name'][0], "who has a ", "{:.2f}".format(df_results2['prediction'][0]),"% chance of winning")
 
+# create bar chart
+st.write("## Ranked results of top 20")
+
+
+chart = alt.Chart(df_results2[:20]).mark_bar().encode(
+    x=alt.X("prediction"),
+    y=alt.Y('Name', sort='-x'),
+    opacity=alt.value(1),
+color=alt.condition(
+    alt.datum.Name == df_results2['Name'][0],  # If it's the top ranked prediction
+        alt.value('#f63366'),     #  sets the bar to the streamlit pink.
+        alt.value('grey')  ) # else this colour
+).properties(
+    width=700
+)
+
+
+text = chart.mark_text(
+    align='left',
+    baseline='middle',
+    dx=3  # Nudges text to right so it doesn't appear on top of the bar
+).encode(
+    text=alt.Text('prediction', format=',.2r')
+)
+
+st.altair_chart(chart+text)
+
+st.write("## Full table of results")
 df_results2
-
-
