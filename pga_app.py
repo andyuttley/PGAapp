@@ -76,7 +76,7 @@ else:
     df_user_biased = user_input_biased()
 
 
-st.write("## YOUR WEIGHTINGS: ")
+st.write("## YOUR CHOSEN WEIGHTINGS: ")
 df_user
 
 
@@ -128,7 +128,9 @@ df_results['prediction'] = softmax(df_results['Total SG per round'])
 df_results2 = df_results[['Name', 'prediction', 'Total SG per round']]
 df_results2.reset_index(inplace=True)
 
+winner = df_results2['Name'][0]
 st.write("Your predicted winner is: ", df_results2['Name'][0], "who has a ", "{:.2f}".format(df_results2['prediction'][0]),"% chance of winning")
+st.markdown(f"The mean is **{winner:}** and there are **{winner:,}**.")
 
 # create bar chart
 st.write("## Ranked results of top 20")
