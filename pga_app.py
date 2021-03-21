@@ -49,8 +49,8 @@ def user_input_features():
                  'SG Putt': sgputt,
                  'SG Par 5': sgpar5,
                  'SG Par 4': sgpar4,
-                 'SG Par 3': sgpar3
-                 'SG Masters':sgmasters}
+                 'SG Par 3': sgpar3,
+                 'SG Masters': sgmasters}
     features = pd.DataFrame(user_data, index=[0])
     return features
 
