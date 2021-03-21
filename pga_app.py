@@ -23,6 +23,7 @@ st.image(image)
 
 #Bring in the data
 data = pd.read_excel('PGA_Database.xlsx')
+st.write("## THE DATA BEING USED")
 data
 
 #Create and name sidebar
@@ -74,14 +75,6 @@ else:
         return biased
     df_user_biased = user_input_biased()
 
-
-#Display the user's chosen weightings
-st.write(
-    """
-    ## Your chosen weighting:
-    """
-)
-df_user
 
 #Output rankings based on users selections
 st.write(
