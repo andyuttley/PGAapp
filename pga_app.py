@@ -76,6 +76,11 @@ else:
     df_user_biased = user_input_biased()
 
 
+st.write("## YOUR WEIGHTINGS: ")
+df_user
+
+
+
 #Output rankings based on users selections
 st.write(
     """
