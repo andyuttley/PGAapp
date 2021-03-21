@@ -11,7 +11,7 @@ mediumlink = '[Andy Uttley - Medium Blog](https://andy-uttley.medium.com/)'
 #Create header
 st.write("""# PGA Data Modeller""")
 st.write("""## How it works""")
-st.write("Using live data scraped from the PGA website, model your predicted winner by using the left side of the screen to apply  weightings to the different metrics. This will give you a ranked 'predicted outcome' based on your selections. "
+st.write("Model your predicted winner by using the left side of the screen to apply  weightings to the different metrics. This will give you a ranked 'predicted outcome' based on your selections. "
          "The current selections are those deemed most appropriate to the Masters based on recent outcomes.")
 st.write("## For more information visit:")
 st.write(mediumlink, " | ", linkedinlink)
@@ -31,10 +31,10 @@ st.sidebar.header('Choose your weightings')
 
 st.sidebar.write("""#### Choose your SG bias""")
 def user_input_features():
-    sgott = st.sidebar.slider('SG Off the Tee', 0, 100, 60, 5)
+    sgott = st.sidebar.slider('SG Off the Tee', 0, 100, 70, 5)
     sga2g = st.sidebar.slider('SG Approach to Green', 0, 100, 100, 5)
     sgatg = st.sidebar.slider('SG Around the Green', 0, 100, 50, 5)
-    sgputt = st.sidebar.slider('SG Putting', 0, 100, 90, 5)
+    sgputt = st.sidebar.slider('SG Putting', 0, 100, 95, 5)
     sgmasters = st.sidebar.slider('SG Masters History', 0, 100, 65, 5)
     sgpar5 = st.sidebar.slider('SG Par 5s', 0, 100, 80, 5)
     sgpar4 = st.sidebar.slider('SG Par 4s', 0, 100, 5, 5)
