@@ -9,8 +9,7 @@ linkedinlink = '[Andy Uttley - LinkedIn](https://www.linkedin.com/in/andrewuttle
 mediumlink = '[Andy Uttley - Medium Blog](https://andy-uttley.medium.com/)'
 
 #Create header
-st.write(
-    """# PGA Data Modeller
+st.write("""# PGA Data Modeller
     ## How it works
     Using live data scraped from the PGA website, model your predicted winner by using the left side of the screen to apply  weightings to the different metrics. This will give you a ranked 'predicted outcome' based on your selections.
     
