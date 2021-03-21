@@ -10,11 +10,11 @@ mediumlink = '[Andy Uttley - Medium Blog](https://andy-uttley.medium.com/)'
 
 #Create header
 st.write(
-    """
-    # PGA Data Modeller     
-    ## How it works
-    Using live data scraped from the """, pgalink, """ website, model your predicted winner by using the left side of the screen to apply  weightings to the different metrics. This will 
-    give you a ranked 'predicted outcome' based on your selections.
+    """# PGA Data Modeller ## How it works Using live data scraped from the PGA website, model your predicted winner 
+    by using the left side of the screen to apply  weightings to the different metrics. This will give you a ranked 
+    'predicted outcome' based on your selections. 
+    
+    The current selections are those deemed most appropriate to the Masters based on recent outcomes. 
     
     ## For more information visit:
     """, mediumlink, """ | """,
