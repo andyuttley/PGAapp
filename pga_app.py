@@ -98,7 +98,7 @@ def results_output():
     sg_atg = (data['SG_ATG_2020']*df_user_biased['last year'][0]  + data['SG_ATG_2021']*df_user_biased['this year'][0]) * df_user['SG ATG'][0] / 100
     sg_putt = (data['SG_Putting2020']*df_user_biased['last year'][0]  + data['SG_Putting2021']*df_user_biased['this year'][0]) * df_user['SG Putt'][0]/100
     #SG Par
-    sgpar5 = (data['Par5ScoringAvg_2020'] * df_user_biased['last year'][0] + data['Par5ScoringAvg_2021'] * df_user_biased['this year'][0]) * df_user['SG Par 5'][0] / 100
+    sgpar5 = (5 - data['Par5ScoringAvg_2020'] * df_user_biased['last year'][0] + 5 - data['Par5ScoringAvg_2021'] * df_user_biased['this year'][0]) * df_user['SG Par 5'][0] / 100
 
     results = {'Name': data['PLAYER NAME']
                , 'Total SG per round': (sg_ott + sg_a2g + sg_atg + sg_putt + sgpar5)
