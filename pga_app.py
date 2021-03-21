@@ -100,7 +100,7 @@ def results_output():
     sgpar5 = (data['Par5ScoringAvg_2020'] * df_user_biased['last year'][0] + data['Par5ScoringAvg_2021'] * df_user_biased['this year'][0]) * df_user['SG Par 5'][0] / 100
 
     results = {'Name': data['PLAYER NAME']
-               , 'Total SG per round': sg_ott + sg_a2g + sg_atg + sg_putt
+               , 'Total SG per round': sg_ott + sg_a2g + sg_atg + sg_putt + sgpar5
                , 'SG OTT Weighted': sg_ott
                , 'SG A2G Weighted': sg_a2g
                , 'SG ATG Weighted': sg_atg
