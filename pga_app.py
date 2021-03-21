@@ -92,12 +92,12 @@ st.write(
 )
 
 def results_output():
-    sg_ott = (data['SG_OTT_2020']*df_user_biased['last year'][0] + data['SG_OTT_2021']*df_user_biased['this year'][0]) * df_user['SG OTT'][0]
-    sg_a2g = (data['SG_A2G_2020']*df_user_biased['last year'][0]  + data['SG_A2G_2021']*df_user_biased['this year'][0]) * df_user['SG A2G'][0]
-    sg_atg = (data['SG_ATG_2020']*df_user_biased['last year'][0]  + data['SG_ATG_2021']*df_user_biased['this year'][0]) * df_user['SG ATG'][0]
-    sg_putt = (data['SG_Putting2020']*df_user_biased['last year'][0]  + data['SG_Putting2021']*df_user_biased['this year'][0]) * df_user['SG Putt'][0]
+    sg_ott = (data['SG_OTT_2020']*df_user_biased['last year'][0] + data['SG_OTT_2021']*df_user_biased['this year'][0]) * df_user['SG OTT'][0] / 100
+    sg_a2g = (data['SG_A2G_2020']*df_user_biased['last year'][0]  + data['SG_A2G_2021']*df_user_biased['this year'][0]) * df_user['SG A2G'][0] / 100
+    sg_atg = (data['SG_ATG_2020']*df_user_biased['last year'][0]  + data['SG_ATG_2021']*df_user_biased['this year'][0]) * df_user['SG ATG'][0] / 100
+    sg_putt = (data['SG_Putting2020']*df_user_biased['last year'][0]  + data['SG_Putting2021']*df_user_biased['this year'][0]) * df_user['SG Putt'][0]/100
     #SG Par need slightly different logic
-    sgpar5 = (data['Par5ScoringAvg_2020'] * df_user_biased['last year'][0] + data['Par5ScoringAvg_2021'] * df_user_biased['this year'][0]) * df_user['SG Par 5'][0]
+    sgpar5 = (data['Par5ScoringAvg_2020'] * df_user_biased['last year'][0] + data['Par5ScoringAvg_2021'] * df_user_biased['this year'][0]) * df_user['SG Par 5'][0] / 100
 
     results = {'Name': data['PLAYER NAME']
                , 'Total SG per round': sg_ott + sg_a2g + sg_atg + sg_putt + sgpar5
