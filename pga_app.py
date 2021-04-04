@@ -32,18 +32,22 @@ st.sidebar.header('Choose your weightings')
 st.sidebar.write("""#### Choose your SG bias""")
 def user_input_features():
     sgott = st.sidebar.slider('SG Off the Tee', 0, 100, 70, 5)
-    sga2g = st.sidebar.slider('SG Approach to Green', 0, 100, 100, 5)
+    sga2g = st.sidebar.slider('SG Approach to Green', 0, 100, 90, 5)
     sgatg = st.sidebar.slider('SG Around the Green', 0, 100, 50, 5)
     sgputt = st.sidebar.slider('SG Putting', 0, 100, 80, 5)
     sgmasters = st.sidebar.slider('SG Masters History', 0, 100, 80, 5)
-    sgpar5 = st.sidebar.slider('SG Par 5s', 0, 100, 95, 5)
+    sgtotal = st.sidebar.slider('SG Total', 0, 100, 95, 5)
+    sgpar5 = st.sidebar.slider('SG Par 5s', 0, 100, 75, 5)
     sgpar4 = st.sidebar.slider('SG Par 4s', 0, 100, 15, 5)
     sgpar3 = st.sidebar.slider('SG Par 3s', 0, 100, 15, 5)
+
+
 
     user_data = {'SG OTT': sgott,
                  'SG A2G': sga2g,
                  'SG ATG': sgatg,
                  'SG Putt': sgputt,
+                 'SG Total': sgtotal,
                  'SG Par 5': sgpar5,
                  'SG Par 4': sgpar4,
                  'SG Par 3': sgpar3,
@@ -92,6 +96,7 @@ def results_output():
     sg_ott = (data['SG_OTT_2020']*df_user_biased['last year'][0] + data['SG_OTT_2021']*df_user_biased['this year'][0]) * df_user['SG OTT'][0] / 100
     sg_a2g = (data['SG_A2G_2020']*df_user_biased['last year'][0]  + data['SG_A2G_2021']*df_user_biased['this year'][0]) * df_user['SG A2G'][0] / 100
     sg_atg = (data['SG_ATG_2020']*df_user_biased['last year'][0]  + data['SG_ATG_2021']*df_user_biased['this year'][0]) * df_user['SG ATG'][0] / 100
+    sg_total = (data['SG_Total_2020']*df_user_biased['last year'][0]  + data['SG_Total_2021']*df_user_biased['this year'][0]) * df_user['SG Total'][0]/100
     sg_putt = (data['SG_Putting2020']*df_user_biased['last year'][0]  + data['SG_Putting2021']*df_user_biased['this year'][0]) * df_user['SG Putt'][0]/100
     #SG Par requires additional logic
     sgpar5 = (5 - data['Par5ScoringAvg_2020'] * df_user_biased['last year'][0] + 5 - data['Par5ScoringAvg_2021'] * df_user_biased['this year'][0]) * df_user['SG Par 5'][0] / 100
@@ -101,7 +106,7 @@ def results_output():
     sgmasters = (data['MastersSG']*((df_user_biased['last year'][0] + df_user_biased['this year'][0])/2) * df_user['SG Masters'][0]/100)
 
     results = {'Name': data['PLAYER NAME']
-               , 'Total SG per round': (sg_ott + sg_a2g + sg_atg + sg_putt + sgpar5 + sgpar4 + sgpar3 + sgmasters)
+               , 'Total SG per round': (sg_ott + sg_a2g + sg_atg + sg_putt + sgpar5 + sgpar4 + sgpar3 + sgmasters + sg_total)
                , 'SG OTT Weighted': sg_ott
                , 'SG A2G Weighted': sg_a2g
                , 'SG ATG Weighted': sg_atg
@@ -110,6 +115,7 @@ def results_output():
                 , 'SG Par 4 Weighted': sgpar4
                 , 'SG Par 3 Weighted': sgpar3
                 , 'SG Masters': sgmasters
+                 , 'SG Total': sg_total
                }
     resultpd = pd.DataFrame(results)
     resultpd.sort_values(by=['Total SG per round'], ascending=False, inplace=True)
