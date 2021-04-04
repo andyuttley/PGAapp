@@ -132,6 +132,10 @@ winner = df_results2['Name'][0]
 predperc = df_results2['prediction'][0]
 st.markdown(f"Your predicted winner is **{winner:}** who has a **{predperc:.2f}**% chance of winning")
 
+#image
+winnerimage = Image.open(winner+'.jpg')
+st.image(winnerimage)
+
 # create bar chart
 st.write("## RANKED RESULTS OF TOP 20")
 
