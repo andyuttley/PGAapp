@@ -36,7 +36,7 @@ def user_input_features():
     sgatg = st.sidebar.slider('SG Around the Green', 0, 100, 50, 5)
     sgputt = st.sidebar.slider('SG Putting', 0, 100, 80, 5)
     sgmasters = st.sidebar.slider('SG Masters History', 0, 100, 80, 5)
-    sgtotal = st.sidebar.slider('SG Total', 0, 100, 50, 5)
+    sgtotal = st.sidebar.slider('SG Total', 0, 100, 25, 5)
     sgpar5 = st.sidebar.slider('SG Par 5s', 0, 100, 75, 5)
     sgpar4 = st.sidebar.slider('SG Par 4s', 0, 100, 15, 5)
     sgpar3 = st.sidebar.slider('SG Par 3s', 0, 100, 15, 5)
